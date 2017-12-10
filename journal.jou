@@ -7,13 +7,14 @@ file/read-data results_4779-1-01500.dat.gz
 ; 
 define/beta-feature-access yes OK 
 ;
+; define/user-defined/interpreted-functions "myudf.c" "cpp" 10000 no
 ; define/user-defined/compiled-functions compile libudf yes y sdof_flap.c "" "" 
-; define/user-defined/compiled-functions load libudf  
+; define/user-defined/compiled-functions load "libudf/lnamd64/3d/libudf.so"
 ;
 ;
 file/auto-save/case-frequency if-case-is-modified
 file/auto-save/data-frequency 100
-; file/auto-save/root-name results_time
+; file/auto-save/root-name results
 ;
 ; define/models/energy no
 ; define/models/viscous laminar ,
@@ -34,7 +35,6 @@ parallel/load-balance/mesh-adaption no
 ;
 ;
 ;
-;
   solve/set/limits 9E4 1.5E5 298 302 , , , , 
 ;
 ; solve/initialize/initialize-flow
@@ -50,7 +50,7 @@ solve/dual-time-iterate 300 40 , , , ,
 ; report/dpm-sample "injection-0" ()     "table_upper" ()      , ,      yes
 ; report/dpm-sample "injection-0" ()     "table_upper" ()      , ,      yes
 ;
-;
+; file/confirm-overwrite yes
 ; file/write-case all_steady.cas.gz yes
 ; file/write-data results.dat.gz yes
 ;
