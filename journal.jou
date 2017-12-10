@@ -1,0 +1,59 @@
+;
+;
+file/read-case results_4779-1-01500.cas.gz 
+file/read-data results_4779-1-01500.dat.gz
+;
+;
+; 
+define/beta-feature-access yes OK 
+;
+; define/user-defined/compiled-functions compile libudf yes y sdof_flap.c "" "" 
+; define/user-defined/compiled-functions load libudf  
+;
+;
+file/auto-save/case-frequency if-case-is-modified
+file/auto-save/data-frequency 100
+; file/auto-save/root-name results_time
+;
+; define/models/energy no
+; define/models/viscous laminar ,
+;
+; define/boundary-conditions pressure-outlet outlet_2 , , -5 ,,,,,,,,,,,,,
+;
+;
+; parallel/timer/usage
+parallel/load-balance/dynamic-mesh no no , 100
+parallel/load-balance/mesh-adaption no
+; parallel/partition/set/all-off
+(rpsetvar 'parallel/enable-balance #f)
+(rpsetvar 'parallel/niter-balance-auto 50)
+(rpsetvar 'parallel/niter-balance 50)
+(rpsetvar 'overset/partition/interval 100)
+; (rpsetvar 'adapt/dynamic/interval 20)
+;
+;
+;
+;
+;
+  solve/set/limits 9E4 1.5E5 298 302 , , , , 
+;
+; solve/initialize/initialize-flow
+; solve/initialize/hyb-initialization   
+;
+; solve/iterate 2000
+solve/set/time-step 0.001
+solve/dual-time-iterate 300 40 , , , , 
+;
+;
+; display/particle-tracks/particle-tracks/particle-resid-time ,,,,
+; report/dpm-sample "injection-0" ()     "table_upper" ()      , ,      yes 
+; report/dpm-sample "injection-0" ()     "table_upper" ()      , ,      yes
+; report/dpm-sample "injection-0" ()     "table_upper" ()      , ,      yes
+;
+;
+; file/write-case all_steady.cas.gz yes
+; file/write-data results.dat.gz yes
+;
+;
+;
+exit yes
