@@ -16,7 +16,7 @@ gnuplot -persist <<-EOFMarker
 	plot for [col=3:5] "< cat $1 | grep -E  '$rexp' " using 1:col title word(titles,col) with lines
 	
 	pause 1
-    
-    exit
+	
+	exit
 
 EOFMarker
