@@ -58,7 +58,7 @@ solve/dual-time-iterate 300 40 , , , ,
 ; file hdfio-options compression-level 4 ; (compression-level [0-9]? [0])
 ; file hdfio-options io-mode 3
 ; HDF5 I/O Modes:
-;	  1. HOST
+;   1. HOST
 ; 	2. NODE0
 ; 	3. PARALLEL INDEPENDENT
 ; 	4. PARALLEL COLLECTIVE
