@@ -28,9 +28,10 @@ file/auto-save/data-frequency 100
 (rpsetvar 'parallel/niter-balance 50)
 (rpsetvar 'overset/partition/interval 100)
 ; (rpsetvar 'adapt/dynamic/interval 20)
+;
 ; parallel/timer/usage
 ; parallel/partition/method metis 4
-; parallel/auto/method/method metis
+; parallel/partition/auto/method metis
 ; parallel/partition/set/load-distribution (0.25 0.25 0.25 0.25)
 parallel/load-balance/dynamic-mesh no no , 100
 parallel/load-balance/mesh-adaption no
