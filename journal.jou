@@ -22,6 +22,12 @@ file/auto-save/data-frequency 100
 ; define/boundary-conditions pressure-outlet outlet_2 , , -5 ,,,,,,,,,,,,,
 ;
 ;
+;
+(rpsetvar 'parallel/enable-balance #f)
+(rpsetvar 'parallel/niter-balance-auto 50)
+(rpsetvar 'parallel/niter-balance 50)
+(rpsetvar 'overset/partition/interval 100)
+; (rpsetvar 'adapt/dynamic/interval 20)
 ; parallel/timer/usage
 ; parallel/partition/method metis 4
 ; parallel/auto/method/method metis
@@ -29,12 +35,6 @@ file/auto-save/data-frequency 100
 parallel/load-balance/dynamic-mesh no no , 100
 parallel/load-balance/mesh-adaption no
 ; parallel/partition/set/all-off
-(rpsetvar 'parallel/enable-balance #f)
-(rpsetvar 'parallel/niter-balance-auto 50)
-(rpsetvar 'parallel/niter-balance 50)
-(rpsetvar 'overset/partition/interval 100)
-; (rpsetvar 'adapt/dynamic/interval 20)
-;
 ;
 ;
 ;
