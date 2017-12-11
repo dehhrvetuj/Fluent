@@ -68,8 +68,8 @@ solve/dual-time-iterate 300 40 , , , ,
 ;
 ;
 ; file/confirm-overwrite
-; file/write-case all_steady.cas.gz
-; file/write-data results.dat.gz
+; file/write-case all_steady.cas.gz ok
+; file/write-data results.dat.gz ok
 ;
 ;
 exit yes
