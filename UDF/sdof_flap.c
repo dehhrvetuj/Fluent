@@ -1,15 +1,18 @@
 #include "udf.h"
-#include <stdlib.h>
 
 #define CG_DISTANCE 0.5
 
-DEFINE_CG_MOTION(door,dt,vel,omega,time,dtime)
+
+static real v_prev = 0.0;
+
+DEFINE_CG_MOTION(flap,dt,vel,omega,time,dtime)
 {
-    vel[0] = 0.75;
+	vel[1] = -0.3;
 }
 
-#define C1 1.0E7
-#define C2 0.0
+
+#define C1 5.0E7
+#define C2 100.0
 
 static int last_ts = -1;   /*  Global variable.  Time step is never <0 */
 
@@ -30,7 +33,7 @@ DEFINE_ADJUST(first_iter_only, domain)
 
 int IsPorous(real x[ND_ND])
 {
-  if ( x[0]<=0.0 && fabs(x[1])<=0.20 )
+  if ((x[0]>=0.2 && x[0]<=0.3) && (x[1]<=1.6 || x[1]>=2.2 || x[2]>=1.8 || x[2]<=0))
   {
 	return 1;
   }
@@ -119,25 +122,3 @@ DEFINE_SOURCE(zmom_source,c,t,dS,eqn)
   return source;
 }
 
-DEFINE_ON_DEMAND(mark_porous_media)
-{
-  real x[ND_ND];
-  
-  Domain *domain;
-  cell_t c;
-  Thread *t;
- 
-  domain=Get_Domain(1);	/* In the case of single phase, domain ID is 1. */
-  
-  
-  /* Fill the UDM with magnitude of gradient. */
-  thread_loop_c (t,domain)
-    {
-       begin_c_loop (c,t)
-         {
-		   C_CENTROID(x,c,t);
-           C_UDMI(c,t,0) = IsPorous(x);
-         }
-       end_c_loop (c,t)
-    }
-}
