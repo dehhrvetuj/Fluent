@@ -33,13 +33,21 @@ file/auto-save/data-frequency 100
 ; parallel/partition/method metis 4
 ; parallel/partition/auto/method metis
 ; parallel/partition/set/load-distribution (0.25 0.25 0.25 0.25)
-parallel/load-balance/dynamic-mesh no no , 100
-parallel/load-balance/mesh-adaption no
+; parallel/load-balance/dynamic-mesh no no , 100
+; parallel/load-balance/mesh-adaption no
 ; parallel/partition/set/all-off
 ;
 ;
 ;
-  solve/set/limits 9E4 1.5E5 298 302 , , , , 
+; (rpsetvar 'temperature/secondary-gradient? #t)
+;
+(rpsetvar 'temperature/explicit-relax? #f)
+(rpsetvar 'explicit-relaxation? #t)
+(rpsetvar 'temperature/explicit-relax 0.3)
+;
+solve/set/under-relaxation pressure 0.2 mom 0.5 temperature 0.8  k 0.8  epsilon 0.8
+solve/set/limits 9E4 1.5E5 298 302 , , , , 
+;
 ;
 ; solve/initialize/initialize-flow
 ; solve/initialize/hyb-initialization   
