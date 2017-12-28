@@ -46,8 +46,13 @@ file/auto-save/data-frequency 100
 (rpsetvar 'temperature/explicit-relax 0.3)
 ;
 solve/set/under-relaxation pressure 0.2 mom 0.5 temperature 0.8  k 0.8  epsilon 0.8
-solve/set/limits 9E4 1.5E5 298 302 , , , , 
 ;
+;
+;                                         continuity     Ux     Uy     Uz   energy      k    epsilon
+solve/monitors/residual/convergence-criteria    1E-6   1E-6   1E-6   1E-6     1E-6   1E-6       1E-6
+;
+;                minP   maxP    minT    maxT    minK    minEpsilon  maxVT/V
+solve/set/limits 1E4    1E6     250     600     1E-12   1E-16       10000
 ;
 ; solve/initialize/initialize-flow
 ; solve/initialize/hyb-initialization   
