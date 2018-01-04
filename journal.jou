@@ -55,7 +55,8 @@ solve/monitors/residual/convergence-criteria    1E-6   1E-6   1E-6   1E-6     1E
 solve/set/limits 1E4    1E6     250     600     1E-12   1E-16       10000
 ;
 ; solve/initialize/initialize-flow
-; solve/initialize/hyb-initialization   
+; solve/initialize/hyb-initialization
+; solve/initialize/fmg-initialization
 ;
 ; solve/iterate 2000
 solve/set/time-step 0.001
