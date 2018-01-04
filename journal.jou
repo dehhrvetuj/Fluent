@@ -21,6 +21,7 @@ file/auto-save/data-frequency 100
 ;
 ; define/boundary-conditions pressure-outlet outlet_2 , , -5 ,,,,,,,,,,,,,
 ;
+solve/set/gradient-scheme Green-Gauss Node-Based yes
 ; solve/set/discretization-scheme mom 2 pressure 13 temperature 2
 ; -----------------------------------------
 ; --  0 - 1st upwind; 2 - 2nd upwind; 
