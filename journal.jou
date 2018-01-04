@@ -18,6 +18,9 @@ file/auto-save/data-frequency 100
 ;
 ; define/models/energy no
 ; define/models/viscous laminar ,
+; define/models/viscous ke-rng yes
+; define/models/viscous ke-realizable yes
+;
 ;
 ; define/boundary-conditions pressure-outlet outlet_2 , , -5 ,,,,,,,,,,,,,
 ;
