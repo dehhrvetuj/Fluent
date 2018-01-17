@@ -8,7 +8,7 @@ file/read-data results_4779-1-01500.dat.gz
 define/beta-feature-access yes OK 
 ;
 ;
-define/operating-conditions/gravity yes 0 0 -0.981
+; define/operating-conditions/gravity yes 0 0 -0.981
 ;
 ;
 ; define/user-defined/interpreted-functions "myudf.c" "cpp" 10000 no
