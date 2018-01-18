@@ -32,7 +32,7 @@ solve/set/gradient-scheme Green-Gauss Node-Based yes
 ; solve/set/discretization-scheme mom 2 pressure 13 temperature 2
 ; -----------------------------------------
 ; --  0 - 1st upwind; 2 - 2nd upwind; 
-; --  13 - body force weighted
+; --  13 - body force weighted; 14 - PRESTO!
 ;
 (rpsetvar 'parallel/enable-balance #f)
 (rpsetvar 'parallel/niter-balance-auto 50)
