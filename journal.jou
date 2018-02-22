@@ -31,7 +31,7 @@ file/auto-save/data-frequency 100
 solve/set/gradient-scheme Green-Gauss Node-Based yes
 ; solve/set/discretization-scheme mom 2 pressure 13 temperature 2
 ; -----------------------------------------
-; --  0 - 1st upwind; 2 - 2nd upwind; 
+; --  0 - 1st upwind; 1 - 2nd upwind;  2 - Power-Law; 4 - QUICK; 6 - 3rd Order MUSCL
 ; --  13 - body force weighted; 14 - PRESTO!
 ;
 (rpsetvar 'parallel/enable-balance #f)
