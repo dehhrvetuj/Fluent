@@ -283,3 +283,44 @@ DEFINE_DPM_BC(bc_wall_jet, p, thread, f, f_normal, dim)
     }
   return PATH_ACTIVE;
 }
+
+
+/**********************************************************************/
+/* Example 3 - UDF Particle Trap Criteria */
+
+/* If a particle impacts the wall and its velocity is less than the 
+capture velocity for its diameter it will be trapped. if not it will reflect. */
+
+#include "udf.h"
+#include "dpm.h"
+DEFINE_DPM_BC(best_dpmbc,p,t,f,f_normal,dim)
+{
+    /*Variable declarations*/
+    real capture_vel;
+    real diameter;
+    real vmag;  /*particle velocity magnitude*/
+    int i;  /*working counter for script*/
+
+    /*Varaible evaluations*/
+    diameter=P_DIAM(p);
+
+    /*Calculate capture velocity*/
+    capture_vel=(0.000000515/diameter);
+
+    /*Calculate velocity magnitude of particle*/
+    for(i=0; i<dim; i++)
+    {
+        vmag += P_VEL(p)[i]*P_VEL(p)[i];
+    }
+    vmag = sqrt(vmag);
+
+    /*If particle velocity is less than capture velocity, set to zero*/
+    if(vmag < capture_vel)
+    {
+        for(i=0; i<dim; i++)
+            P_VEL(p)[i] = 0;
+    }
+    /*Stop tracking the particle*/
+    return PATH_ABORT;
+}
+/**********************************************************************/
