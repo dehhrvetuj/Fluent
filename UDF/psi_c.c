@@ -84,6 +84,7 @@ DEFINE_DPM_SCALAR_UPDATE(Part_Con, c, t, initialize, p)
 }
 
 
+/* important funciton call p->number_in_parcel */
 #include "udf.h"
 
 DEFINE_ON_DEMAND(particle_cells_count)
