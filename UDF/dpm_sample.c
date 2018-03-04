@@ -34,16 +34,16 @@ DEFINE_ON_DEMAND(all_unsteady_particles)
   { 
     loop(p,I->p) 
     { 
-    counter++; 
+      counter++; 
 
-    #if WRITE_FILE 
-    /* data to be written to file goes here */ 
-    #if PARALLEL 
-    par_fprintf(fyle,"%d, %e %e %e n",I->try_id,P_DIAM(p),P_MASS(p),P_T(p)); 
-    #else 
-    par_fprintf(fyle,"%e %e %e n",P_DIAM(p),P_MASS(p),P_T(p)); 
-    #endif /* PARALLEL */ 
-    #endif /* WRITE_FILE */ 
+      #if WRITE_FILE 
+      /* data to be written to file goes here */ 
+      #if PARALLEL 
+      par_fprintf(fyle,"%d, %e %e %e n",I->try_id,P_DIAM(p),P_MASS(p),P_T(p)); 
+      #else 
+      par_fprintf(fyle,"%e %e %e n",P_DIAM(p),P_MASS(p),P_T(p)); 
+      #endif /* PARALLEL */ 
+      #endif /* WRITE_FILE */ 
     } 
   } 
 
@@ -53,5 +53,5 @@ DEFINE_ON_DEMAND(all_unsteady_particles)
 
   counter = PRF_GRSUM1(counter); 
 
-  Message0("There are %d dpm parcels in the domain. n",counter); 
+  Message0("There are %d dpm parcels in the domain. n", counter); 
 } 
