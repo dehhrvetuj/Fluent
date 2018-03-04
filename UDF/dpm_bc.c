@@ -1,4 +1,14 @@
-/* reflect boundary condition for inert particles */
+/* Macro:	DEFINE_DPM_BC ( name, p, t, f, f_normal, dim)
+ 	 
+Argument types:	Tracked_Particle *p
+ 	Thread *t
+ 	face_t f
+ 	real f_normal[]
+ 	int dim
+ 	 
+Function returns:	int */
+
+/* Example 1 - reflect boundary condition for inert particles */
 
 #include "udf.h"
 
@@ -76,6 +86,8 @@ DEFINE_DPM_BC(bc_reflect, p, t, f, f_normal, dim)
   return PATH_ABORT;
 }
 
+
+/* Example 2 - how to use DEFINE_DPM_BC for a wall impingement model. */
 /*
  *      Copyright 1988-2002 Fluent Inc and Fluent Deutschland GmbH.
  *      All Rights Reserved
