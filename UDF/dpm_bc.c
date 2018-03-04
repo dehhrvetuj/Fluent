@@ -6,7 +6,13 @@ Argument types:	Tracked_Particle *p
  	real f_normal[]
  	int dim
  	 
-Function returns:	int */
+Function returns:	int 
+
+typedef enum { PATH_END, PATH_ACTIVE, PATH_BREAK, PATH_ABORT, PATH_STOP #if DPM2 , PATH_NON_LOCAL #endif } Path_Status;
+
+*/
+
+
 
 /* Example 1 - reflect boundary condition for inert particles */
 
