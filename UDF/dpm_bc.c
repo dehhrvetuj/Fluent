@@ -8,10 +8,13 @@ Argument types:	Tracked_Particle *p
  	 
 Function returns:	int 
 
-typedef enum { PATH_END, PATH_ACTIVE, PATH_BREAK, PATH_ABORT, PATH_STOP #if DPM2 , PATH_NON_LOCAL #endif } Path_Status;
+Return type: typedef enum { PATH_END, PATH_ACTIVE, PATH_BREAK, PATH_ABORT, PATH_STOP #if DPM2 , PATH_NON_LOCAL #endif } Path_Status;
+
+Particles have two fates once they hit the wall:
+(1) particle is captured by the wall (trapped, using a return of PATH_ABORT)
+(2) particle continues (using a return of PATH_ACTIVE) with reflected velocities.
 
 */
-
 
 
 /* Example 1 - reflect boundary condition for inert particles */
