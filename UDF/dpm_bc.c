@@ -34,6 +34,9 @@ DEFINE_DPM_BC(bc_reflect, p, t, f, f_normal, dim)
     }
   else
 #endif
+	  
+	  
+/* ----- 3D mode --------- */
   for (i=0; i<idim; i++)
 	normal[i] = f_normal[i];
 
