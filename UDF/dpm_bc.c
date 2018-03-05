@@ -18,7 +18,7 @@ Particles have two fates once they hit the wall:
 
 
 /* Example 1 - reflect boundary condition for inert particles */
-/* not working for a moving wall */
+/* not working for a moving wall; for a moving wall, see Example 2 */
 
 #include "udf.h"
 
@@ -320,8 +320,15 @@ DEFINE_DPM_BC(best_dpmbc,p,t,f,f_normal,dim)
     {
         for(i=0; i<dim; i++)
             P_VEL(p)[i] = 0;
+	    
+	/*Stop tracking the particle*/
+    	return PATH_ABORT;
     }
-    /*Stop tracking the particle*/
-    return PATH_ABORT;
+	else
+	{
+		/* following Example 1 */
+	}
+
 }
+
 /**********************************************************************/
