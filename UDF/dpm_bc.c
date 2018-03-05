@@ -15,14 +15,16 @@ Particles have two fates once they hit the wall:
 (2) particle continues (using a return of PATH_ACTIVE) with reflected velocities.
 
 */
-
+/* This UDF must be compiled instead of interpered */
 
 /* Example 1 - reflect boundary condition for inert particles */
 /* not working for a moving wall; for a moving wall, see Example 2 */
 
 #include "udf.h"
 
-DEFINE_DPM_BC(bc_reflect, p, t, f, f_normal, dim)
+/* reflect boundary condition for inert particles */
+#include "udf.h"
+DEFINE_DPM_BC(bc_reflect,p,t,f,f_normal,dim)
 {
   real alpha;  /* angle of particle path with face normal */
   real vn=0.;
@@ -37,14 +39,14 @@ DEFINE_DPM_BC(bc_reflect, p, t, f, f_normal, dim)
      axisymmetric and swirl flows */
   if (rp_axi_swirl)
     {
-      real R = sqrt(p->state.pos[1]*p->state.pos[1] +
-                    p->state.pos[2]*p->state.pos[2]);
+      real R = sqrt(P_POS(p)[1]*P_POS(p)[1] +
+                    P_POS(p)[2]*P_POS(p)[2]);
       if (R > 1.e-20)
         {
           idim = 3;
           normal[0] = f_normal[0];
-          normal[1] = (f_normal[1]*p->state.pos[1])/R;
-          normal[2] = (f_normal[1]*p->state.pos[2])/R;
+          normal[1] = (f_normal[1]*P_POS(p)[1])/R;
+          normal[2] = (f_normal[1]*P_POS(p)[2])/R;
         }
       else
         {
@@ -54,16 +56,13 @@ DEFINE_DPM_BC(bc_reflect, p, t, f, f_normal, dim)
     }
   else
 #endif
-	  
-	  
-/* ----- 3D mode --------- */
-  for (i=0; i<idim; i++)
-	normal[i] = f_normal[i];
+    for (i=0; i<idim; i++)
+      normal[i] = f_normal[i];
 
   if(p->type==DPM_TYPE_INERT)
     {
-      alpha = M_PI/2. - acos(MAX(-1.,MIN(1.,NV_DOT(normal,p->state.V)/
-                                  MAX(NV_MAG(p->state.V),DPM_SMALL))));
+      alpha = M_PI/2. - acos(MAX(-1.,MIN(1.,NV_DOT(normal,P_VEL(p))/
+                                  MAX(NV_MAG(P_VEL(p)),DPM_SMALL))));
       if ((NNULLP(t)) && (THREAD_TYPE(t) == THREAD_F_WALL))
         F_CENTROID(x,f,t);
 
@@ -72,29 +71,30 @@ DEFINE_DPM_BC(bc_reflect, p, t, f, f_normal, dim)
 
       /* Compute normal velocity. */
       for(i=0; i<idim; i++)
-        vn += p->state.V[i]*normal[i];
+        vn += P_VEL(p)[i]*normal[i];
 
       /* Subtract off normal velocity. */
       for(i=0; i<idim; i++)
-        p->state.V[i] -= vn*normal[i];
+        P_VEL(p)[i] -= vn*normal[i];
 
       /* Apply tangential coefficient of restitution. */
       for(i=0; i<idim; i++)
-        p->state.V[i] *= tan_coeff;
+        P_VEL(p)[i] *= tan_coeff;
 
       /* Add reflected normal velocity. */
       for(i=0; i<idim; i++)
-        p->state.V[i] -= nor_coeff*vn*normal[i];  
+        P_VEL(p)[i] -= nor_coeff*vn*normal[i];  
 
-      /* Store new velocity in state0 of particle */
+      /* Store new velocity in P_VEL0 of particle */
       for(i=0; i<idim; i++)
-        p->state0.V[i] = p->state.V[i];
+        P_VEL0(p)[i] = P_VEL(p)[i];
       
       return PATH_ACTIVE;
     }
 
   return PATH_ABORT;
 }
+
 
 
 /* Example 2 - how to use DEFINE_DPM_BC for a wall impingement model. */
