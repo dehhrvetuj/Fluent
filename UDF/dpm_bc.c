@@ -14,6 +14,10 @@ Particles have two fates once they hit the wall:
 (1) particle is captured by the wall (trapped, using a return of PATH_ABORT)
 (2) particle continues (using a return of PATH_ACTIVE) with reflected velocities.
 
+For the return status PATH_ACTIVE, the particle continues to track. 
+For the return status PATH_ABORT, the particle will be stopped and considered to be aborted. 
+For the return status PATH_END, the particle will be stopped as well, but considered to have escaped from the domain.
+
 */
 /* This UDF must be compiled instead of interpered */
 
