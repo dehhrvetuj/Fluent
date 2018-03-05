@@ -331,4 +331,34 @@ DEFINE_DPM_BC(best_dpmbc,p,t,f,f_normal,dim)
 
 }
 
+/* Example 3 ---- write particle information when they impacting the wall */
+/*  dpm_report_xyz.txt writes just the x,y,z co-ordinates of the trapped particle, 
+dpm_report_injection_file.txt writes a file which defines injection positions. */
+
+#include "udf.h" 
+DEFINE_DPM_BC(dpm_report,p,t,f,f_normal,dim) 
+{ 
+	FILE * f1; 
+	FILE * f2; 
+	
+	float x=0; 
+	float y=0; 
+	float z=0; 
+	
+	f1 = fopen ("C:\\dpm_report_xyz.txt", "a"); 
+	f2 = fopen ("C:\\dpm_report_injection_file.txt", "a");
+	
+	x=P_POS(p)[0]; 
+	y=P_POS(p)[1]; 
+	z=P_POS(p)[2]; 
+	
+	fprintf (f1, "%f %f %f\n",x,y,z); 
+	fprintf (f2, "(( %f %f %f 0 0 0 0 0 0 ) name )\n",x,y,z);
+	
+	fclose(f1); 
+	fclose(f2); 
+	
+	return PATH_ABORT; 
+}
+
 /**********************************************************************/
