@@ -331,7 +331,7 @@ DEFINE_DPM_BC(best_dpmbc,p,t,f,f_normal,dim)
 
 }
 
-/* Example  ---- write particle information when they impacting the wall */
+/* Example 4 ---- write particle information when they impacting the wall */
 /*  dpm_report_xyz.txt writes just the x,y,z co-ordinates of the trapped particle, 
 dpm_report_injection_file.txt writes a file which defines injection positions. */
 
