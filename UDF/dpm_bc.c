@@ -18,6 +18,7 @@ Particles have two fates once they hit the wall:
 
 
 /* Example 1 - reflect boundary condition for inert particles */
+/* not working for a moving wall */
 
 #include "udf.h"
 
