@@ -14,11 +14,13 @@ define/beta-feature-access yes OK
 ; define/user-defined/interpreted-functions "myudf.c" "cpp" 10000 no
 ; define/user-defined/compiled-functions compile libudf yes y sdof_flap.c "" "" 
 ; define/user-defined/compiled-functions load "libudf/lnamd64/3d/libudf.so"
+; define/user-defined/execute-on-demand "on_demand_calc::libudf"
 ;
 ;
-file/auto-save/case-frequency if-case-is-modified
-file/auto-save/data-frequency 100
-; file/auto-save/root-name results
+;
+; file/auto-save/case-frequency if-case-is-modified
+; file/auto-save/data-frequency 100
+; file/auto-save/root-name results.gz
 ;
 ; define/models/energy no
 ; define/models/viscous laminar ,
@@ -74,10 +76,13 @@ solve/set/time-step 0.001
 solve/dual-time-iterate 300 40 , , , , 
 ;
 ;
+;
 ; display/particle-tracks/particle-tracks/particle-resid-time ,,,,
-; report/dpm-sample "injection-0" ()     "table_upper" ()      , ,      yes 
-; report/dpm-sample "injection-0" ()     "table_upper" ()      , ,      yes
-; report/dpm-sample "injection-0" ()     "table_upper" ()      , ,      yes
+;                    injection name                     boundary name                      plane name      append files?       erosion?
+; report/dpm-sample "injection-0" "injection-1" ()     "persons_body" "persons_head" ()    ()              yes                 no
+;
+;
+;
 ;
 ; file hdf-files? yes
 ; file hdfio-options compression-level 4 ; (compression-level [0-9]? [0])
