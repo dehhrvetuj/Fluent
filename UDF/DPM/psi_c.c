@@ -15,16 +15,16 @@ DEFINE_EXECUTE_ON_LOADING(report_version, libname)
 
 DEFINE_ON_DEMAND(on_demand_calc)
 {
-   Domain *d; /* declare domain pointer since it is not passed as an  
-                 argument to the DEFINE macro  */
-   Thread *t;
-   cell_t c;
-   
-   d = Get_Domain(1);     /* Get the domain using Fluent utility */
+	Domain *d; /* declare domain pointer since it is not passed as an  
+				 argument to the DEFINE macro  */
+	Thread *t;
+	cell_t c;
 
-   /* Loop over all cell threads in the domain */
-   thread_loop_c(t,d)
-   {	 
+	d = Get_Domain(1);     /* Get the domain using Fluent utility */
+
+	/* Loop over all cell threads in the domain */
+	thread_loop_c(t,d)
+	{	 
 		/* Loop over all cells  */
 		begin_c_loop(c,t)
 		{
@@ -32,10 +32,12 @@ DEFINE_ON_DEMAND(on_demand_calc)
 		   C_UDMI(c,t,1) = 0.0;
 		}
 		end_c_loop(c,t)
- 
-   }
-      
-   Message("\nUser Defined Memory is now initialized!\n"); 
+
+	}
+
+	#if !RP_NODE /* SERIAL or HOST */
+	Message("\nUser Defined Memory is now initialized!\n");  
+	#endif /* !RP_NODE */
 }
 
 DEFINE_ADJUST(adjust_dpm, d)
@@ -51,9 +53,11 @@ DEFINE_ADJUST(adjust_dpm, d)
 		}
 		end_c_loop(c,t)
 	}
-	
+
+	#if !RP_NODE /* SERIAL or HOST */
 	printf("Adjust DPM Mass Concentration\n");
 	fflush(stdout);
+	#endif /* !RP_NODE */	
 }
 
 DEFINE_EXECUTE_AT_END(execute_at_end)
@@ -73,8 +77,10 @@ DEFINE_EXECUTE_AT_END(execute_at_end)
 		end_c_loop(c,t)
 	}
 
+	#if !RP_NODE /* SERIAL or HOST */
 	printf("Update DPM Mass Concentration\n");
 	fflush(stdout);
+	#endif /* !RP_NODE */	
 }
 
 DEFINE_DPM_SCALAR_UPDATE(Part_Con, c, t, initialize, p)
@@ -110,9 +116,11 @@ DEFINE_ON_DEMAND(particle_cells_count)
 			num_part=p->number_in_parcel;
 		}
 	}
-
+	
+	#if !RP_NODE /* SERIAL or HOST */
 	Message("num_part: %d\n",num_part);
 	Message("parcel_trapped: %d\n",parcel_trapped);
 	Message("number_in_parcel: %d\n",number_in_parcel);
+	#endif /* !RP_NODE */
 
 }
