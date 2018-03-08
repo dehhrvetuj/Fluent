@@ -55,3 +55,16 @@ DEFINE_ON_DEMAND(all_unsteady_particles)
 
   Message0("There are %d dpm parcels in the domain. n", counter); 
 } 
+
+/*
+When used with par_fprintf, the first two replacement variables in the format string must be the
+particle injection ID and particle ID respectively. The rest of the format string can be chosen to specify
+the output that will be written and its formatting. ANSYS Fluent will automatically remove the particle injection ID 
+and particle ID fields when closing the sample file.
+
+par_fprintf(fp, "%d %" int64_fmt " %e\t%e\t%e\n",
+				P_INJ_ID(P_INJECTION(p)),
+				p->part_id,
+				P_POS(p)[0], P_POS(p)[1], P_POS(p)[2]);
+				
+				*/
