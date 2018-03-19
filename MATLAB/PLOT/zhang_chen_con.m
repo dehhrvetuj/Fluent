@@ -74,7 +74,7 @@ for i=1:NUM
     set(gca,'LineWidth',linewidth/2,'FontSize',fontsize);
     
     xlabel('C/C_e_x_h_a_u_s_t','FontSize',8,'FontWeight','bold','Color','k');
-    ylabel('Y [m]','FontSize',8,'FontWeight','bold','Color','k');
+    ylabel('Z [m]','FontSize',8,'FontWeight','bold','Color','k');
     text(0.7,0.9,['P' num2str(i)],'FontSize',8,'FontWeight','bold','Color','k','Units','normalized')
     ax = axs(i); ax.XRuler.MinorTick = 0:0.2:3; ax.YRuler.MinorTick = 0:0.1:2.4;
     

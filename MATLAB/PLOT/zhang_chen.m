@@ -29,7 +29,7 @@ markersize = 28;
 % -------------
 % Figure properties 
 xwidth = 24;    % cm - width of A4 paper
-ywidth = 6;     % cm -
+ywidth = 8;     % cm -
 % -------------
 
 for i=1:7
@@ -67,6 +67,7 @@ for i=1:7
     gap_left = 0.042; gap_between = 0.058; gap_bottom = 0.17;
     width = 0.080; height = 0.8;
     space = gap_between + width; % make sure space <= (100%-2*gap0) / 7 = ;
+    
     subplot(1,7,i,'Position',[gap_left+j*space, gap_bottom, width, height]);
    
     % plot smoothed simulated velocity
@@ -77,7 +78,7 @@ for i=1:7
     set(gca,'XMinorTick','on','YMinorTick','on');
     set(gca,'LineWidth',linewidth/2,'FontSize',fontsize);
     xlabel('V [m/s]','FontSize',8,'FontWeight','bold','Color','k');
-    ylabel('Y [m]','FontSize',8,'FontWeight','bold','Color','k');
+    ylabel('Z [m]','FontSize',8,'FontWeight','bold','Color','k');
     text(0.7,0.1,['V' num2str(i)],'FontSize',8,'FontWeight','bold','Color','k','Units','normalized')
     ax = gca; ax.XRuler.MinorTick = 0:0.02:0.2; ax.YRuler.MinorTick = 0:0.1:2.4;
     
@@ -91,7 +92,7 @@ for i=1:7
     % -------------------------------- Temperature -----------------------%
     % plot temperature
     figure(2)
-    subplot(1,7,i,'Position',[gap_left+j*space, gap_bottom, width, height]);
+    subplot(2,7,i,'Position',[gap_left+j*space, gap_bottom, width, height]);
     
     % plot smoothed simulated temperature
     points = fnplt(csapi(z, tmp));
@@ -101,7 +102,7 @@ for i=1:7
     set(gca,'XMinorTick','on','YMinorTick','on');
     set(gca,'LineWidth',linewidth/2,'FontSize',fontsize);
     xlabel('T','FontSize',8,'FontWeight','bold','Color','k');
-    ylabel('Y [m]','FontSize',8,'FontWeight','bold','Color','k');
+    ylabel('Z [m]','FontSize',8,'FontWeight','bold','Color','k');
     text(0.7,0.1,['V' num2str(i)],'FontSize',8,'FontWeight','bold','Color','k','Units','normalized');
     ax = gca; ax.XRuler.MinorTick = 0:0.1:1.5; ax.YRuler.MinorTick = 0:0.1:2.4;
    
