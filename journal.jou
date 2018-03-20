@@ -76,6 +76,8 @@ solve/set/time-step 0.001
 solve/dual-time-iterate 300 40 , , , , 
 ;
 ;
+solve/dpm-update
+report/dpm-summary
 ;
 ; display/particle-tracks/particle-tracks/particle-resid-time ,,,,
 ;                    injection name                     boundary name                      plane name      append files?       erosion?
