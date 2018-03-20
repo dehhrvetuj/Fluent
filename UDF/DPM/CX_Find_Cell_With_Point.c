@@ -1,3 +1,5 @@
+/* Simulation of Coal Ash Deposition on Modern Turbine Nozzle Guide Vanes  - Master Thesis */
+
 #include "udf.h"
 #include "cxiface.h"
 DEFINE_DPM_INJECTION_INIT(injection_velocity,I)
