@@ -3,6 +3,10 @@
 #include "udf.h"
 #include "dpm.h"
 
+/* The following compiled UDF named limit_to_e_minus_four sets the time step to a maximum value of $1e^-4$. 
+If the time step computed by FLUENT (and passed as an argument) is smaller than  $1e^-4$, 
+then FLUENT's time step is returned. */
+
 DEFINE_DPM_TIMESTEP(limit_to_e_minus_four,p dt)
 {
    if (dt > 1.e-4)
@@ -18,6 +22,9 @@ DEFINE_DPM_TIMESTEP(limit_to_e_minus_four,p dt)
 
 
 /* Particle time step control UDF for DPM  */
+/* The particle time step is limited to a fifth of the particle relaxation time. 
+If the particle time step computed by FLUENT (and passed as an argument) 
+is smaller than this value, then FLUENT's time step is returned. */
 
 #include "udf.h"
 #include "dpm.h"
