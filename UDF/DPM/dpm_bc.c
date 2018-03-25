@@ -9,7 +9,6 @@ static int count = 0;
 DEFINE_EXECUTE_ON_LOADING(report_version, libname)
 {
     Message0("\nLoading %s version %d.%d\n",libname,version,release);
-	
 	count = 0;
 	/*
 	Set_User_Memory_Name(0,"DPM_CON");
