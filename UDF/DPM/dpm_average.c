@@ -2,6 +2,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+/* 
+NOTE: this UDF is written only for serial use. 
+Cannot be used for parallel applications!!!
+*/
 
 #if ND_ND==3
 
