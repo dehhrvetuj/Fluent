@@ -39,6 +39,11 @@ DEFINE_ON_DEMAND(on_demand_calc)
 	}
 	  
 	Message0("\nUser Defined Memory is now initialized!\n"); 
+	
+	/* if memory for the particle variable titles has not been
+	* allocated yet, do it now */
+	if (NULLP(user_particle_vars)) Init_User_Particle_Vars();
+	/* now set the name and label */
 
 	strcpy(user_particle_vars[0].name,"melting-index");
 	strcpy(user_particle_vars[0].label,"Melting Index");
