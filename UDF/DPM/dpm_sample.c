@@ -30,6 +30,9 @@ DEFINE_ON_DEMAND(all_unsteady_particles)
   par_fprintf_head(fyle," DIAMETER MASS TEMPERATURE n"); 
   #endif /* WRITE_FILE */ 
 
+  /* This is only looping the initial position of parcels, i.e., the injection locations of parcels.
+  It cannot be applied to track the end positions of parcels. */
+	
   loop(I,dpm_injections) 
   { 
     loop(p,I->p) 
