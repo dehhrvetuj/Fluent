@@ -31,7 +31,7 @@ DEFINE_ON_DEMAND(all_unsteady_particles)
   #endif /* WRITE_FILE */ 
 
   /* This is only looping the initial position of parcels, i.e., the injection locations of parcels.
-  It cannot be applied to track the end positions of parcels. */
+  It cannot be applied to track the end positions of parcels. It does not account for turbulent tries as well. */
 	
   loop(I,dpm_injections) 
   { 
