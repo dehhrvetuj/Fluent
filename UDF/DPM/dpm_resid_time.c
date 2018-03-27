@@ -70,5 +70,5 @@ DEFINE_DPM_SCALAR_UPDATE(Part_Con, c, t, initialize, p)
 	}
 	
  	Message("\nParticle Time Step %e in cell ID %d with time0 %e at time step %d\n", P_DT(p), c, P_TIME0(p), count); 
-	Message("\nParticle Residence Time %e  %e\n", C_UDMI(c,t,1), dt); */	
+	Message("\nParticle Residence Time %e  %e\n", C_UDMI(c,t,1), dt); 	
 }
