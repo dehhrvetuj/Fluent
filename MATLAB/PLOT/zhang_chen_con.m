@@ -2,14 +2,15 @@ clc
 clear all
 close all
 
-% data = importdata('D:\Cong\KTH\PhD2\Projects\Validation\Zhang_Chen\Experiment\ZhangandChen.xlsx');
-% data = data.data;
+data = importdata('D:\Cong\Archive\Validation\Zhang_Chen\Data\ZhangandChen.xlsx');
+data = data.data;
 % save
-
-load;
+% 
+% load;
 
 con_exp = data.Concentration;
-con_simulation = data.Simulation0x28particle0x290x28AVE0x29;
+% con_simulation = data.Simulation0x28particle0x290x28AVE0x29;
+con_simulation = data.Simulation0x28particle0x290x28AVE0x290x28hyb0x29;
 % con_simulation = data.Simulation0x28particle0x29;
 con_simulation = con_simulation(2:end,:);
 
@@ -19,7 +20,7 @@ exp_pos_con = con_exp(1:5,4);
 z = 0:0.05:2.4;
 z = z(:);
 
-tol = 0.005;
+tol = 0.05;
 
 % ---------------------------------------
 % plot properties 
@@ -32,6 +33,12 @@ xwidth = 24;    % cm - width of A4 paper
 ywidth = 6;     % cm -
 NUM = 6;        % number of subplots
 % -------------
+
+figure(1)
+hFig = figure(1);
+set(gcf,'PaperPositionMode','auto','Units','centimeters')
+set(hFig, 'Position', [10 10 xwidth ywidth])    % [left bottom width height]
+
 
 for i=1:NUM
 
@@ -91,12 +98,9 @@ for i=1:NUM
 end
 
 
-figure(1)
-hFig = figure(1);
-set(gcf,'PaperPositionMode','auto','Units','centimeters')
-set(hFig, 'Position', [10 10 xwidth ywidth])    % [left bottom width height]
 for i=1:NUM 
-    set(get(axs(i),'xlabel'),'Position',[0.7 -0.1],'Units','normalized');
+    set(get(axs(i),'xlabel'),'Position',[2.1 -0.29],'Units','normalized');
 end
+
 % print('concentration','-dmeta')
 
