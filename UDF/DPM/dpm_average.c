@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-/* 
-NOTE: this UDF is written only for serial use. 
-Cannot be used for parallel applications!!!
-*/
+/* CANNOT BE USED FOR PARALLEL CASES */
+/* Models->Discrete Phase->Interaction with Continuous Phase MUST 
+BE TICKED ON TO USE THIS UDF DUE TO MACRO C_DPMS_CONCENTRATION. */
+
 
 #if ND_ND==3
 
@@ -16,7 +16,7 @@ Cannot be used for parallel applications!!!
 /* static char str[MAX_CHAR] = {0}; */
 static real POS[MAX_POS][ND_ND] = {0}; 
 
-static const real SIZE[ND_ND] = {0.1,0.1,0.1}; 
+static const real SIZE[ND_ND] = {0.25,0.25,0.2}; 
 
 static real vol = 0.0;
 static real con = 0.0;
@@ -55,20 +55,22 @@ DEFINE_ON_DEMAND(dpm_ave)
 	
 	if( fp == NULL )
 	{
-		Message("\nCannot find the file\n");
+		Message0("\nCannot find the file\n");
 	}
 	else
 	{
-		Message("\n ------------- File positions.txt is open. --------------\n");
+		Message0("\n ------------- File positions.txt is open. --------------\n");
 		
-		if ( index > MAX_POS )
-			Message("\n ----------Too many specified locations.--------------\n");
+		if ( index >= MAX_POS )
+			Message0("\n ----------Too many specified locations.--------------\n");
 		else
 			while( fscanf(fp, "%lf %lf %lf", &POS[index][0],&POS[index][1],&POS[index][2]) == 3 )
 			{
 				/* while( fgets(str, MAX_CHAR, fp) != NULL ) */
 				index++;
 			}
+		
+		Message0("\n ---------- Finished Reading positions.txt --------------\n");
 	}
 	
 	fclose(fp); /* close the position file */
@@ -76,7 +78,9 @@ DEFINE_ON_DEMAND(dpm_ave)
 	/* open the output file */
 	fp = fopen("output.txt", "w");
 	if( fp == NULL )
-		Message("\nCannot write to file output.txt\n");
+		Message0("\n-------------Cannot write to file output.txt-----------------\n");
+	else
+		Message0("\n--------------Open file output.txt-----------------\n");
 
 	/* start looping all position points */
 	for(i=0; i<index; i++)
@@ -85,7 +89,6 @@ DEFINE_ON_DEMAND(dpm_ave)
 		{
 			pos[dim] = POS[i][dim];			
 		}*/
-		
 		NV_V(pos, =, POS[i]);
 		
 		weight = 0.0;
@@ -123,7 +126,7 @@ DEFINE_ON_DEMAND(dpm_ave)
 		
 		if ( vol > 1E-9 )
 		{
-			Message("Averaged DPM concentration at %f %f %f is %e\n", 
+			Message0("Averaged DPM concentration at %f %f %f is %e\n", 
 				pos[0],pos[1],pos[2],con/vol);
 			fprintf(fp, "%f %f %f %f %f %f %f %e\n", 
 				pos[0],pos[1],pos[2],vel[0]/vol,vel[1]/vol,vel[2]/vol,(tmp/vol-TEMPERATURE_KELVIN),con/vol);
@@ -131,14 +134,14 @@ DEFINE_ON_DEMAND(dpm_ave)
 		}
 		else
 		{
-			Message("\nZero volume - wrong specified locations at %f %f %f\n",pos[0],pos[1],pos[2]);
+			Message0("\nZero volume - wrong specified locations at %f %f %f\n",pos[0],pos[1],pos[2]);
 			fprintf(fp, "%f %f %f 0 0 0 0 0\n", pos[0],pos[1],pos[2]);
 		}	
 	}
 
 	fclose(fp);
 
-	Message("\n--------------- User Defined Function DPM_AVE exits. -----------------\n");
+	Message0("\n--------------- User Defined Function DPM_AVE exits. -----------------\n");
 }
 
 int Weight(real x[ND_ND], real pos[ND_ND])
