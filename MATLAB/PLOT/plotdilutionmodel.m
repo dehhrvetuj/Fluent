@@ -44,7 +44,6 @@ space = gap_between + width; % make sure space <= (100%-2*gap0) / 7 = ;
 
 
     
-    
 for i=1:NUM
     
     axs = subplot(1,3,i,'Position',[gap_left+(i-1)*space, gap_bottom, width, height]);
@@ -59,6 +58,7 @@ for i=1:NUM
     ylabel('CFU / m^3','FontSize',fontsize-1,'FontWeight','bold','Color','k');
     box on
 
+    h0 = plot(Q,C,'k--','LineWidth',linewidth);
     
     if i==1
         scatter(OT(1:3,1),OT(1:3,2), markersize,'b','filled','s'); %,'LineWidth',6);
@@ -75,17 +75,19 @@ for i=1:NUM
     end
     
     if i==2
-        scatter(IT1(1:3,1),IT1(1:3,2), markersize,'b','filled','s');
+        h1 = scatter(IT1(1:3,1),IT1(1:3,2), markersize,'b','filled','s');
         line(IT1(1:3,1),IT1(1:3,2),'LineStyle','--','LineWidth',linewidth-1,'Color','b');
         
-        scatter(IT1(4:6,1),IT1(4:6,2), markersize,'r','filled','^');
+        h2 = scatter(IT1(4:6,1),IT1(4:6,2), markersize,'r','filled','^');
         line(IT1(4:6,1),IT1(4:6,2),'LineStyle','--','LineWidth',linewidth-1,'Color','r');
         
-        scatter(IT1(7:9,1),IT1(7:9,2), markersize,'g','filled','d'); 
+        h3 = scatter(IT1(7:9,1),IT1(7:9,2), markersize,'g','filled','d'); 
         line(IT1(7:9,1),IT1(7:9,2),'LineStyle','--','LineWidth',linewidth-1,'Color','g');
 
         set(gca,'YLim',[0.1 100]);
         text(0.27,1.1,'Instrument Table 1','FontSize',fontsize,'FontWeight','bold','Color','k','Units','normalized');
+        
+        [leg,objects] = legend([h3 h2 h1 h0],' LAF',' TAF',' Mixing',' Analytical');
     end
     
     if i==3
@@ -101,19 +103,24 @@ for i=1:NUM
         set(gca,'YLim',[10 100]);
         text(0.27,1.1,'Instrument Table 2','FontSize',fontsize,'FontWeight','bold','Color','k','Units','normalized');
     end
-
-    plot(Q,C,'k--','LineWidth',linewidth)
     
 %   axis([0.8 4 0.01 100]);
     axs.XRuler.MinorTick = 0.4:0.1:4;
     set(gca,'XLim',[0.7 4],'XTick',[1 2 3 4]);
-%     set(gca,'YLim',[0 80]);
+%   set(gca,'YLim',[0 80]);
 %   xticks([1 2 3 4]) % Matlab 17.2 or later
-%   legend('Mixing','TAF','LAF','Analytical');
-
-   
+%   legend(axs(2),[h3 h2 h1 h0],'LAF','TAF','Mixing','Analytical');   
     
 end
+
+leg.Location='best';
+for i=5:7
+    objects(i).Children.MarkerSize = 8;
+    objects(i).Children.XData = 0.167;
+end
+objects(8).LineWidth = 1.5;
+objects(8).XData(2) = 0.32;
+ 
 
 % print('XXXXX','-dmeta')
 % print(gcf,'foo.png','-dpng','-r300');         % 300 dpi
