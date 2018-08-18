@@ -1,5 +1,12 @@
 #!bin/bash
 
+# suitable for both steady and transient
+rexp='^[[:blank:]]+[[:digit:]]{1,5}[[:blank:]]+([[:digit:]]\.[[:digit:]]+e[+-][[:digit:]]+[[:blank:]]+)+[[:digit:]]{1,2}:[[:digit:]]{2}:[[:digit:]]{2}'
+
+# suitable for only steady case
+#rexp='^[[:blank:]]+[[:digit:]]{1,6}[[:blank:]]+([[:digit:]]\.[[:digit:]]+e[+-][[:digit:]]+[[:blank:]]+)+'
+
+cat $1 | grep -E  '$rexp' 
 
 gnuplot -persist <<-EOFMarker
 
@@ -8,15 +15,16 @@ gnuplot -persist <<-EOFMarker
 	set ylabel 'Residual'
 	set xlabel 'Iteration'
 	set key outside
+#    set yrange [1E-6:1]
+#    set xrange [4779:5100]
+    set grid
 
 	titles="iter continuity Ux Uy Uz energy k epsilon"
 
-	plot for [col=2:8] "< cat $1 | grep -E  '^[[:blank:]]+[[:digit:]]{1,5}[[:blank:]]+([[:digit:]]\.[[:digit:]]+e[+-][[:digit:]]+[[:blank:]]+)+'"  using 1:col title word(titles,col) with lines
+	plot for [col=2:8] "< cat $1 | grep -E  '$rexp' "  using 1:col title word(titles,col) with lines
 
-	
 	pause 1
-
+    
     exit
-  
-EOFMarker
 
+EOFMarker
