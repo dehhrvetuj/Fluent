@@ -4,9 +4,10 @@
 
 DEFINE_ON_DEMAND(pres_check)
 {
-  int ID;
+  int ID = 0;
+  real maxPressure = 0.0;
+  
   face_t f;
-  real maxPressure;
   Thread *thread;
   Domain *d;
 
@@ -24,23 +25,26 @@ DEFINE_ON_DEMAND(pres_check)
   end_f_loop(f, thread)
 
   /* In parallel, get the combined max pressure across all nodes: */
-#if RP_NODE
+#if RP_NODE     /* only parallel compute nodes involved here; perform node synchronized action here */        
   maxPressure = PRF_GRHIGH1(maxPressure);
 #endif
 
-  Message0("\nMax Pressure = %f \n",maxPressure);
+  Message0("\nMax Pressure = %f \n",maxPressure);   /* message sent by node-0 or serial */
 
   /* In parallel, send the combined max pressure to the host: */
-  node_to_host_real_1(maxPressure);
+  node_to_host_real_1(maxPressure); /* do nothing in serial */
 
-  /* In parallel, only the host sets RP variables: */
-#if !RP_NODE
-  if(RP_Variable_Exists_P("pressure_on_wall")) {
+  /* In parallel, only host or serial can deal with RP variables: */
+#if !RP_NODE    /* serial or host */
+  if(RP_Variable_Exists_P("pressure_on_wall")) 
+  {
     RP_Set_Real("pressure_on_wall",maxPressure);
-  }else{
+  }
+  else
+  {
     Message("\nThe UDF would like to set the RP-var 'pressure_on_wall\n");
     Message("but this RP-var does not currently exist.\n");
-  }
+  }  
 #endif
 
 }
