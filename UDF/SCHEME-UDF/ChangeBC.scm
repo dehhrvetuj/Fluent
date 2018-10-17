@@ -62,3 +62,4 @@
 ; 	 they are not the same numbers as zone ID numbers. (Yeah, I was surprised, too.) So I have avoided the zone ID altogether and used the name only.
 ; ++ You could put that longer set of Scheme commands into a file called check_pres.scm, and then run it with a TUI command 
 ;    /file/read-macro check_pres.scm. I cunningly made sure that the RP-variable is not re-defined every time.
+; https://www.cfd-online.com/Forums/fluent-udf/153731-possible-changing-bc-wall-pressure-outlet-udf-trigger.html
