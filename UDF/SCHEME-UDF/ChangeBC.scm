@@ -1,3 +1,7 @@
+; 1st implementation
+; Change the boundary conditon from 'wall' to 'pressure-outlet' if the maximum pressure exceeds the given limit.
+; The maximum pressure value is obtained from UDF
+
 (rp-var-define 'pressure_on_wall 0.0 'real #f)
 (rp-var-define 'explosion_time 0.0 'float #f)
 (define exploded #f)
