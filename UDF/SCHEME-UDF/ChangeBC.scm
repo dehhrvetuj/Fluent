@@ -1,4 +1,4 @@
-; 1st implementation
+; 1st APPROACH
 ; Change the boundary conditon from 'wall' to 'pressure-outlet' if the maximum pressure on the wall exceeds the given limit.
 ; The maximum pressure value is obtained from UDF
 
@@ -30,4 +30,27 @@
 		))
 	))
 
+)
+
+
+; 2nd APPROACH
+
+(define limit 100000)
+
+(if (not (rp-var-object 'explosion_time))					; more decent way of defining RP variable
+	(rp-var-define 'explosion_time -999.9 'double #f)
+	()
+)															; empty, do nothing
+
+(if (< (%rpgetvar 'explosion_time) 0.0)
+	(if (> (pick-a-real "/rep/surf/facet-max (wall_example) pressure n") limit)
+    	(begin
+      		(display "Limit Pressure Reached.  ")
+      		(rpsetvar 'explosion_time (%rpgetvar 'flow-time))
+
+      		(ti-menu-load-string "/def/bc/mod-zones/zone-type wall_example pressure-inlet")
+      		(ti-menu-load-string "/def/bc/pressure-inlet wall_example , , 300000 , , , 300 , , , , , , , , , , , , , ,")
+      	)
+    	(display "Limit Pressure Not Yet Reached.  ")
+	)
 )
