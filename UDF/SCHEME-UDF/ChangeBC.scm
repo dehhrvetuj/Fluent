@@ -34,13 +34,15 @@
 
 
 ; 2nd APPROACH
+; To use one SCHEME command (pick-a-real "/rep/surf/facet-max (wall_example) pressure n") 
+; to get maximum pressure of a face zone called 'wall_example'.
 
 (define limit 100000)
 
 (if (not (rp-var-object 'explosion_time))					; more decent way of defining RP variable
 	(rp-var-define 'explosion_time -999.9 'double #f)
-	()
-)															; empty, do nothing
+	()														; empty, do nothing
+)															
 
 (if (< (%rpgetvar 'explosion_time) 0.0)
 	(if (> (pick-a-real "/rep/surf/facet-max (wall_example) pressure n") limit)
