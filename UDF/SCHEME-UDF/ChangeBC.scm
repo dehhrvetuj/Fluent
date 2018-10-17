@@ -63,5 +63,5 @@
 ; ++ You could put that longer set of Scheme commands into a file called check_pres.scm, and then run it with a TUI command 
 ;    /file/read-macro check_pres.scm. I cunningly made sure that the RP-variable is not re-defined every time.
 ; https://www.cfd-online.com/Forums/fluent-udf/153731-possible-changing-bc-wall-pressure-outlet-udf-trigger.html
-; * [[http://www.OpenFOAM.org/git.php][Download and installation instructions]]
+* [[http://www.OpenFOAM.org/git.php][Download and installation instructions]]
 
