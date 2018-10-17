@@ -64,3 +64,4 @@
 ;    /file/read-macro check_pres.scm. I cunningly made sure that the RP-variable is not re-defined every time.
 ; https://www.cfd-online.com/Forums/fluent-udf/153731-possible-changing-bc-wall-pressure-outlet-udf-trigger.html
 ; * [[http://www.OpenFOAM.org/git.php][Download and installation instructions]]
+
