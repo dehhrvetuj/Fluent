@@ -17,3 +17,22 @@
 
 ;; Before executing this command it is a good practice to check if the surface exists or not using the boolean command: 
 (surface-name/id? 'nameofthesurface)
+
+
+
+;; Get all zone id
+rp-var-define 'a () 'list #f)
+(rpsetvar 'a ())
+(for-each (lambda (t) (rpsetvar 'a (list-add 
+									(rpgetvar 'a) (thread-id t))))
+          (get-all-threads))
+(rpgetvar 'a)
+
+;; Get all zone names
+(rp-var-define 'b () 'list #f)
+(rpsetvar 'b ())
+(for-each (lambda (t) (rpsetvar 'b (list-add
+									(rpgetvar 'b) (thread-name t))))
+          (get-all-threads))
+(rpgetvar 'b)
+
