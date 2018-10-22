@@ -21,7 +21,7 @@
 
 
 ;; Get all zone id
-rp-var-define 'a () 'list #f)
+(rp-var-define 'a () 'list #f)
 (rpsetvar 'a ())
 (for-each (lambda (t) (rpsetvar 'a (list-add 
 									(rpgetvar 'a) (thread-id t))))
