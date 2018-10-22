@@ -21,6 +21,8 @@
 
 
 ;; Get all zone id
+;; Two key functions: thread-id; thread-name
+
 (rp-var-define 'a () 'list #f)
 (rpsetvar 'a ())
 (for-each (lambda (t) (rpsetvar 'a (list-add 
@@ -36,3 +38,6 @@
           (get-all-threads))
 (rpgetvar 'b)
 
+
+;; Get zone name by zone id
+(zone-id->name ZONE_ID)
