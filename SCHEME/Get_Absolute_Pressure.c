@@ -11,6 +11,9 @@
 #define PRINT CX_Message
 #endif
 
+/* Get the absolute pressure for each cell zone */
+/* You can compare the values with report/volume-integrals/vol-avg for each cell zone of abs-pressure */
+
 DEFINE_ON_DEMAND(zoneid_zonename)
 {
     /*print thread id_s, thread_names and volume-integral values of abs-pressure for each thread*/
