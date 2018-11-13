@@ -65,6 +65,10 @@ zq = ones(length(xq),1)*3.2;
 figure
 scatter(xq,yq,[],magq,'.');
 
+% TRANSLATE THE COORDINATE
+xq = xq + 3.50;
+yq = yq + 4.46;
+
 % EXPORT DATA IN SCHEME FORMAT FOR FLUENT USE
 nrow = length(xq);
 
@@ -110,19 +114,3 @@ end
 fprintf(fileID,'%s\n',')');
 
 fclose(fileID);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
