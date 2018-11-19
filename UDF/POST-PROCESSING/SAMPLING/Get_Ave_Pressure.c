@@ -81,3 +81,4 @@ int Weight(const real x[ND_ND], const real pos[ND_ND])
 	
 	return  flag;
 } 
+
