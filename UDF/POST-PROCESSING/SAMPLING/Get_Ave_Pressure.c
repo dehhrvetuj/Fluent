@@ -6,6 +6,7 @@ static real var = 0.0;
 static real vol = 0.0;
 
 static const real SIZE[ND_ND] = {0.25,0.25,0.2};
+static const real pos[ND_ND] = {0.0,0.0,0.0};
 
 int Weight(real x[ND_ND], real pos[ND_ND]);
 
@@ -17,7 +18,6 @@ DEFINE_ON_DEMAND(vol_ave_var)
     Domain *domain;
 	
 	real c_x[ND_ND] = {0.0,0.0,0.0};	
-	real pos[ND_ND] = {0.0,0.0,0.0};
 
     real c_var = 0.0;
 	real c_vol = 0.0;
@@ -79,5 +79,5 @@ int Weight(real x[ND_ND], real pos[ND_ND])
 			flag *= 0;
 	}
 	
-	return  1; /*flag;*/
+	return  flag;
 } 
