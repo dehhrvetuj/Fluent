@@ -8,7 +8,7 @@ static real vol = 0.0;
 static const real SIZE[ND_ND] = {0.25,0.25,0.2};
 static const real pos[ND_ND] = {0.0,0.0,0.0};
 
-int Weight(real x[ND_ND], real pos[ND_ND]);
+int Weight(const real x[ND_ND], const real pos[ND_ND]);
 
 DEFINE_ON_DEMAND(vol_ave_var)
 {
@@ -66,7 +66,7 @@ DEFINE_ON_DEMAND(vol_ave_var)
 }
 
 
-int Weight(real x[ND_ND], real pos[ND_ND])
+int Weight(const real x[ND_ND], const real pos[ND_ND])
 {
 	int flag = 1;
 	int dim = 0;
