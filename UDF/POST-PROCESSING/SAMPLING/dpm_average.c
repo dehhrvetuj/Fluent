@@ -7,7 +7,6 @@
 BE TICKED ON TO USE THIS UDF DUE TO MACRO C_DPMS_CONCENTRATION. */
 
 
-#if ND_ND==3
 
 #define MAX_CHAR 256
 #define MAX_POS 512
@@ -16,7 +15,7 @@ BE TICKED ON TO USE THIS UDF DUE TO MACRO C_DPMS_CONCENTRATION. */
 /* static char str[MAX_CHAR] = {0}; */
 static real POS[MAX_POS][ND_ND] = {0}; 
 
-static const real SIZE[ND_ND] = {0.25,0.25,0.2}; 
+static const real SIZE[ND_ND] = {0.5,0.5,0.5}; 
 
 static real vol = 0.0;
 static real con = 0.0;
@@ -82,6 +81,8 @@ DEFINE_ON_DEMAND(dpm_ave)
 	else
 		Message0("\n--------------Open file output.txt-----------------\n");
 
+	fprintf(fp, "%s\n", "x y z u v w t c");
+	
 	/* start looping all position points */
 	for(i=0; i<index; i++)
 	{
@@ -124,7 +125,7 @@ DEFINE_ON_DEMAND(dpm_ave)
 		   end_c_loop (c,t)
 		}
 		
-		if ( vol > 1E-9 )
+		if ( vol > 1E-16 )
 		{
 			Message0("Averaged DPM concentration at %f %f %f is %e\n", 
 				pos[0],pos[1],pos[2],con/vol);
@@ -159,7 +160,3 @@ int Weight(real x[ND_ND], real pos[ND_ND])
 	
 	return flag;
 } 
-
-#else
-
-#endif
