@@ -55,7 +55,7 @@ scatter(x,y,[],maguvw,'.');
 
 
 % RESCALE VELOCITY TO HAVE DESIRED AIRFLOW RATE
-V = 0.15; % [m^3/s]
+V = 0.15; % [m^3/s] since the area is 1 m^2;
 
 u = u./mean(w)*V;
 v = v./mean(w)*V;
@@ -99,7 +99,7 @@ nrow = length(x);
 % fclose(fileID);
 
 
-fileID = fopen('cor_inlet','w');
+fileID = fopen('cor-inlet','w');
 
 fprintf(fileID,'%s %d %s\n','((cor-inlet-profile point', nrow,')');
 

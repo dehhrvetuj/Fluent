@@ -14,6 +14,9 @@ u = data(:,4);
 w = data(:,5); 
 v = data(:,6);
 
+% SET UPWARD VELOCITY TO ZERO
+w(w>0) = -0.001;
+
 mag = sqrt(u.^2 + v.^2 + w.^2);
 
 figure
@@ -59,8 +62,10 @@ uq = uq(~isnan(uq));
 vq = vq(~isnan(vq));
 wq = wq(~isnan(wq));
 
-magq = sqrt(uq.^2 + vq.^2 + wq.^2);
 zq = ones(length(xq),1)*3.2;
+
+% PLOT FIGURE
+magq = sqrt(uq.^2 + vq.^2 + wq.^2);
 
 figure
 scatter(xq,yq,[],magq,'.');
@@ -72,9 +77,9 @@ yq = yq + 4.46;
 % EXPORT DATA IN SCHEME FORMAT FOR FLUENT USE
 nrow = length(xq);
 
-fileID = fopen('inlet','w');
+fileID = fopen('or-inlet','w');
 
-fprintf(fileID,'%s %d %s\n','((inlet-profile point', nrow,')');
+fprintf(fileID,'%s %d %s\n','((or-inlet-profile point', nrow,')');
 
 fprintf(fileID,'%s\n','(x');
 for i=1:nrow
