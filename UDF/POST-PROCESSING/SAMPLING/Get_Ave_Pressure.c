@@ -9,7 +9,7 @@ static real var = 0.0;
 static real vol = 0.0;
 
 static const real SIZE[ND_ND] = {0.25,0.25,0.2};
-static const real pos[ND_ND] = {0.0,0.0,0.0};
+static const real POS[ND_ND] = {0.0,0.0,0.0};
 
 int Weight(const real x[ND_ND], const real pos[ND_ND]);
 
@@ -41,7 +41,7 @@ DEFINE_ON_DEMAND(vol_ave_var)
 		   c_vol = C_VOLUME(c,t);
 		   c_var = C_P(c,t);	/*C_DPMS_CONCENTRATION(c,t);*/
 		   
-		   c_vol *= Weight(c_x,pos);
+		   c_vol *= Weight(c_x,POS);
 		   
 		   vol += c_vol;
 		   var += c_var*c_vol;
