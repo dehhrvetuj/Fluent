@@ -1,6 +1,9 @@
 #include "udf.h"
 #include <stdlib.h>
 #include <stdio.h>
+
+/* This UDF can be used for parallel run.
+NOTE: '%e' should be used instead of '%f' at Line 62 if DPM concentration is to be output. */
  
 static real var = 0.0;
 static real vol = 0.0;
@@ -56,7 +59,7 @@ DEFINE_ON_DEMAND(vol_ave_var)
 	if ( vol > 1E-16 )
 	{
 		var /= vol;
-		Message0("Volume Averaged Variable at (%f %f %f) %f\n",pos[0],pos[1],pos[2],var);
+		Message0("Volume Averaged Variable at (%f %f %f) %f\n",pos[0],pos[1],pos[2],var); 
 	}
 	else
 	{
