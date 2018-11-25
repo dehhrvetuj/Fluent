@@ -60,8 +60,10 @@
 ; ******************** IMPORTANT TO NOTE *********************************
 ; ++ You can put face zone numbers into the /report/surface command... BUT, whatever numbers are used there, 
 ; 	 they are not the same numbers as zone ID numbers. (Yeah, I was surprised, too.) So I have avoided the zone ID altogether and used the name only.
+;
 ; ++ You could put that longer set of Scheme commands into a file called check_pres.scm, and then run it with a TUI command 
 ;    /file/read-macro check_pres.scm. I cunningly made sure that the RP-variable is not re-defined every time.
+;
 ; ++ You can put the above TUI command in Calculation Activities//Execute Commands, to run at a specified frequency. 
 ; https://www.cfd-online.com/Forums/fluent-udf/153731-possible-changing-bc-wall-pressure-outlet-udf-trigger.html
 
