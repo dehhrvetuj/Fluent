@@ -41,3 +41,17 @@
 
 ;; Get zone name by zone id
 (zone-id->name ZONE_ID)
+
+;
+(define (export-bc-names)
+	(for-each
+		(lambda (name)
+			(display
+				(format #f " {~a, \"~a\", \"~a\"},\n"
+					(zone-name->id name)
+					name
+					(zone-type (get-zone name))
+		)))
+		(inquire-zone-names)
+	)
+)
