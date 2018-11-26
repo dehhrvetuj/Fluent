@@ -20,6 +20,8 @@
 #SBATCH -o output_file.o
 #SBATCH --mail-type=ALL
 
+# Run only on Haswell node (thin node)
+#SBATCH -C Haswell
 
 # load module fluent v18.2
 module add fluent/19.2 
