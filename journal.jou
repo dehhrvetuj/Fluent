@@ -10,6 +10,7 @@ define/beta-feature-access yes OK
 ;
 ; define/operating-conditions/gravity yes 0 0 -0.981
 ;
+; define/models/radiation/discrete-ordinates yes , , , , 
 ;
 ; define/user-defined/interpreted-functions "myudf.c" "cpp" 10000 no
 ; define/user-defined/compiled-functions compile libudf yes y sdof_flap.c "" "" 
