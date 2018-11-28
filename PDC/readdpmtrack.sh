@@ -15,4 +15,3 @@ gnuplot -persist <<-EOFMarker
   pause 1
                                   
   exit
-gnu
