@@ -1,17 +1,23 @@
-grep -E '^number tracked =[[:blank:]]+[[:digit:]]{2,9}' unsteady.log
+#!bin/bash
 
-echo 'hello world'|grep -oP '(?<=number tracked =\s)\w+'   #是找出以hello为前缀之后的字符串
+# find a string folloing 'number tracked ='
+rexp='(?<=number tracked =\s)\w+' 
 
+grep -oP '(?<=number tracked =\s)\w+' $1 > $2
 
 gnuplot -persist <<-EOFMarker
 
 
-    set logscale y
+#   set logscale y
     set grid
+    
+#   Note grep -oP rather than grep -E
+#    plot "< cat $1 | grep -oP '(?<=number tracked =\s)\w+' "
+    plot "< cat $2 "
   
-    plot for [col=1] "< cat $1 | grep -E '$rexp' "
   
-  
-  pause 1
+    pause 1
                                   
-  exit
+    exit
+
+EOFMarker
