@@ -32,5 +32,6 @@
 	(ti-menu-load-string "\n")	
 )
 
-; /define/boundary-conditions/wall xdoor-d01 , , , , yes heat-flux , , , , , , 0.88 yes trap , , , , , ,
-; /define/boundary-conditions/wall xdoor-d01-shadow , , , , yes heat-flux , , , , , , 0.88 yes trap , , , , , ,
+; /define/boundary-conditions/wall xdoor-d01 , , , , yes heat-flux , , , , , , 0.88 yes trap , , , , , ,					; SET WALL EMISSIVITY TO 0.88
+; /define/boundary-conditions/wall xdoor-d01-shadow , , , , yes heat-flux , , , , , , 0.88 yes trap , , , , , ,				; SET WALL-shadow EMISSIVITY TO 0.88
+; /define/models/dpm/injections set-injection-properties injection-0 , , , , , , , , , , , , , , , , , , , , 3600 , , , ,	; SET INJECTION STOP TIME TO 3600s 
