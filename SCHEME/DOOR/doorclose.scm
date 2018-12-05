@@ -8,8 +8,8 @@
 ;
 ;
 ; SET DOOR OPEN START TIME
-(define dooropen 2521)
-(define doorclose 2531)
+(define dooropen 1)
+(define doorclose 11)
 ;
 ;
 ; DEFINE RELATED VARIABLES
@@ -22,7 +22,6 @@
 ;
 ; GET FLOWTIME
 (set! flowtime (%rpgetvar 'flow-time))
-(set! flowtime 2535.89999999)
 (display flowtime)
 (display "****")
 ;
@@ -86,5 +85,16 @@
 		(ti-menu-load-string 
 			(format #f "/define/boundary-conditions/modify-zones/zone-type xdoor-d~02d wall " (- 51 doornum))
 		)
+		(ti-menu-load-string "\n")
+		
+		(ti-menu-load-string 
+			(format #f "/define/boundary-conditions/wall xdoor-d~02d , , , , yes heat-flux , , , , , , 0.90 yes trap , , , , , , , ," x)
+		)	
+		(ti-menu-load-string "\n")
+		
+		(ti-menu-load-string 
+			(format #f "/define/boundary-conditions/wall xdoor-d~02d-shadow , , , , yes heat-flux , , , , , , 0.90 yes trap , , , , , , , ," x)
+		)
+		(ti-menu-load-string "\n")		
 	)	
 )
