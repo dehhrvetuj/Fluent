@@ -7,11 +7,11 @@
 ;;
 ;;
 ;; WRITE DAT FILE
-(ti-menu-load-string  "/file/write-data  ./temp.gz")
+(ti-menu-load-string  "/file/write-data  ./temp.dat.gz ok")
 ;;
 ;;
 ;;
-;;
+;; (ti-menu-load-string "/solve/set/pseudo-transient , , , 2 1")
 ;;
 ;;
 ;;
