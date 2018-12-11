@@ -4,7 +4,7 @@ file/read-case results_4779-1-01500.cas.gz
 file/read-data results_4779-1-01500.dat.gz
 ;
 ;
-; 
+; DELETE RESIDUAL HISTORY AND ITERATION NUMBER BECOMES 1
 define/beta-feature-access yes OK 
 ;
 ;
@@ -60,6 +60,10 @@ solve/set/gradient-scheme Green-Gauss Node-Based yes
 (rpsetvar 'temperature/explicit-relax 0.3)
 ;
 solve/set/under-relaxation pressure 0.2 mom 0.5 temperature 0.8  k 0.8  epsilon 0.8
+;
+;
+; 
+solve/montiors/residual/reset yes
 ;
 ;
 ;                                         continuity     Ux     Uy     Uz   energy      k    epsilon
