@@ -37,6 +37,11 @@ solve/set/gradient-scheme Green-Gauss Node-Based yes
 ; --  0 - 1st upwind; 1 - 2nd upwind;  2 - Power-Law; 4 - QUICK; 6 - 3rd Order MUSCL
 ; --  13 - body force weighted; 14 - PRESTO!
 ;
+;
+; SET BLENDING FACTOR 0.8 AND LIMIT HIGHER-ORDER PRESTO!
+; /solve/set/numerics , , , , yes 0.8
+;
+;
 (rpsetvar 'parallel/enable-balance #f)
 (rpsetvar 'parallel/niter-balance-auto 50)
 (rpsetvar 'parallel/niter-balance 50)
