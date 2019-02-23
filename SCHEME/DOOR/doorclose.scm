@@ -89,12 +89,12 @@
 			(ti-menu-load-string "\n")
 
 			(ti-menu-load-string 
-				(format #f "/define/boundary-conditions/wall xdoor-d~02d , , , , yes heat-flux , , , , , , 0.90 yes trap , , , , , , , ," x)
+				(format #f "/define/boundary-conditions/wall xdoor-d~02d , , , , yes heat-flux , , , , , , 0.90 yes trap , , , , , , , ," (- 51 doornum))
 			)	
 			(ti-menu-load-string "\n")
 
 			(ti-menu-load-string 
-				(format #f "/define/boundary-conditions/wall xdoor-d~02d-shadow , , , , yes heat-flux , , , , , , 0.90 yes trap , , , , , , , ," x)
+				(format #f "/define/boundary-conditions/wall xdoor-d~02d-shadow , , , , yes heat-flux , , , , , , 0.90 yes trap , , , , , , , ," (- 51 doornum))
 			)
 			(ti-menu-load-string "\n")
 		 )
