@@ -30,6 +30,7 @@ define/beta-feature-access yes OK
 ;
 ;
 ; define/boundary-conditions pressure-outlet outlet_2 , , -5 ,,,,,,,,,,,,,
+; define/boundary-conditions velocity-inlet  nose_person1  no  no  yes  yes  no  -0.625  no  ,  no  20   no  no  no  yes  10  0.02
 ;
 solve/set/gradient-scheme Green-Gauss Node-Based yes
 ; solve/set/discretization-scheme mom 2 pressure 13 temperature 2
