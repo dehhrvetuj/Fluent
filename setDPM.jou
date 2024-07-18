@@ -1,0 +1,14 @@
+
+/define/models/dpm/interaction  coupled-calculations   yes
+
+/define/models/dpm/options  brownian-motion  yes
+/define/models/dpm/options  saffman-lift-force  yes
+/define/models/dpm/options  pressure-gradient-force   yes
+/define/models/dpm/options  thermophoretic-force    yes
+/define/models/dpm/options  virtual-mass-force    yes
+
+/define/models/dpm/numerics  drag-law   spherical
+
+/define/models/dpm/injection  create-injection  ,  no  yes   surface  yes   water-liquid  mouth_patient  ,  yes  yes  yes  yes  100  ,  no  no  no  no  1e-6  20  1.0  1e-20
+
+/define/boundary-conditions/set   wall  , , , , , , , , , , , , , , , , , , , , () dpm-bc-type  yes  trap 
